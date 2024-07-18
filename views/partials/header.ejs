@@ -4,393 +4,391 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Notes </title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@400;700&display=swap"
-        rel="stylesheet">
-
+    <title>Note Making site</title>
     <style>
-        /* Common styles for body and html */
         body,
-        html {
+        ul {
             margin: 0;
             padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #141414;
-            /* Dark background */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: linear-gradient(135deg, #4CAF50, #2196F3);
+            color: #FFFFFF;
+        }
+
+        nav.top {
+            background-color: #2c3e50;
+            /* Dark blue */
             color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Styles for header */
-        header {
-            width: 100%;
-            background-color: #000;
-            padding: 1rem 0;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            z-index: 1000;
-        }
-
-        header h1 {
-            font-size: 2rem;
-            color: #FF4500;
-            /* Orange-red */
-            margin: 0;
-        }
-
-        /* Styles for navbar */
-        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
+            padding: 10px 20px;
         }
 
-        .navbar ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
+        nav.top .title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav.top ul {
+            list-style: none;
             display: flex;
         }
 
-        .navbar li {
-            margin-right: 15px;
+        nav.top ul li {
+            margin-right: 20px;
         }
 
-        .navbar a {
-            text-decoration: none;
+        nav.top ul li a {
             color: #fff;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
+            text-decoration: none;
+            transition: color 0.3s;
         }
 
-        .navbar a:hover {
-            color: #FF4500;
-            /* Orange-red on hover */
+        nav.top ul li a:hover {
+            color: #ff9900;
         }
 
-        /* Styles for notes */
-        .notes-container {
-            max-width: 1200px;
-            width: 100%;
+        main {
             padding: 20px;
-            display: grid;
-            grid-gap: 20px;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            justify-items: center;
-            margin-top: 300px;
-            /* Adjust as needed */
+            color: #333;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            background-color: #34495e;
+            /* Dark slate blue */
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media screen and (max-width: 768px) {
+            nav.top {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav.top .title {
+                margin-bottom: 10px;
+            }
+
+            nav.top ul {
+                margin-top: 10px;
+            }
+
+            nav.top ul li {
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+        }
+
+        /* Additional styles for specific components */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
         .note {
-            background: linear-gradient(135deg, rgba(33, 33, 33, 0.8), rgba(33, 33, 33, 0.9));
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            transition: transform 0.3s ease;
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            /* Align items to top and bottom */
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
-        .note:hover {
-            transform: translateY(-5px);
-        }
-
-        .note h2 {
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #FF4500;
-            /* Orange-red */
+        .note h1 {
+            font-size: 24px;
+            color: #FFFFFF;
+            margin-bottom: 10px;
         }
 
         .note p {
-            color: #ccc;
+            color: #FFFFFF;
         }
 
-        .note-buttons {
-            margin-top: auto;
-            /* Push buttons to bottom */
-            display: flex;
-            justify-content: center;
-        }
-
-        .note-buttons button {
-            padding: 0.5rem 1rem;
-            margin: 0 1rem;
+        .note button {
+            background: #2196F3;
+            color: #FFFFFF;
             border: none;
-            background: none;
-            font-size: 1rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: 10px;
         }
 
-        .note-buttons button:hover {
-            color: #FF4500;
-            /* Orange-red on hover */
+        .note button:hover {
+            background: #1E88E5;
         }
 
-        /* Old header content styles */
-        .page-container {
-            max-width: 800px;
-            width: 100%;
-            padding: 40px;
-            margin-top: 40px;
-            background-color: #222;
-            /* Dark gray background */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        .note hr {
+            border: none;
+            border-top: 1px solid #FFFFFF;
+            margin-top: 20px;
+            margin-bottom: 0;
         }
 
-        .content-container {
+        .contact-container {
+            padding: 20px;
             text-align: center;
         }
 
         .contact-info {
-            text-align: center;
-        }
-
-        .contact-info p {
-            margin: 10px 0;
-            font-size: 1.2rem;
-            color: #ccc;
-        }
-
-        .contact-info strong {
-            color: #FF4500;
-            /* Orange-red */
-        }
-
-        .contact-info a {
-            color: #FF4500;
-            /* Orange-red */
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            color: #fff;
-            /* White on hover */
-        }
-
-        .about-container {
-            max-width: 800px;
-            width: 100%;
-            padding: 40px;
-            margin-top: 40px;
-            background-color: #222;
-            /* Dark gray background */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            text-align: center;
-        }
-
-        .about-container h1 {
-            font-size: 2.5rem;
-            color: #FF4500;
-            /* Orange-red */
-            margin-bottom: 20px;
-        }
-
-        .about-text {
-            text-align: left;
+            background: rgba(26, 170, 160, 0.6);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            color: #FFFFFF;
             margin-top: 20px;
         }
 
-        .about-text p {
-            margin: 10px 0;
-            font-size: 1.2rem;
-            line-height: 1.6;
-            color: #ccc;
-        }
-
-        .website-details {
-            margin-top: 40px;
-            text-align: left;
-        }
-
-        .website-details h2 {
-            font-size: 1.5rem;
-            color: #FF4500;
-            /* Orange-red */
-        }
-
-        .website-details p {
-            margin: 10px 0;
-            font-size: 1.2rem;
-            color: #ccc;
-        }
-
-        .lll {
-            margin-bottom: 0.5rem;
-            font-family: 'Dancing Script', cursive;
-            font-size: 2.5 rem;
-            font-weight: 900;
-            color: #FF4500;
+        .contact-info p {
+            font-size: 16px;
+            margin-bottom: 10px;
         }
 
         .compose-container {
-            max-width: 600px;
-            width: 100%;
             padding: 20px;
-            margin-top: 100px;
-            /* Adjust as needed */
-            background-color: #222;
-            /* Dark gray background */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .compose-container h2 {
-            font-size: 2rem;
-            color: #FF4500;
-            /* Orange-red */
-            margin-bottom: 20px;
             text-align: center;
         }
 
         .compose-form {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
         .compose-form label {
-            font-size: 1.2rem;
-            margin-bottom: 8px;
-            color: #ccc;
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #FFFFFF;
+            display: block;
         }
 
         .compose-form input[type="text"],
         .compose-form textarea {
-            padding: 0.5rem;
-            margin-bottom: 15px;
-            border: 1px solid #333;
-            border-radius: 5px;
-            background-color: #333;
-            color: #fff;
-            font-size: 1rem;
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #FFFFFF;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s, background-color 0.3s;
+            margin-bottom: 10px;
         }
 
-        .compose-form textarea {
-            min-height: 150px;
-            resize: vertical;
+        .compose-form input[type="text"]:focus,
+        .compose-form textarea:focus {
+            border-color: #4CAF50;
+            background-color: rgba(255, 255, 255, 0.3);
         }
 
-        .compose-form button {
-            padding: 0.75rem;
+        .compose-form button[type="submit"] {
+            width: 100%;
+            padding: 10px;
             border: none;
-            border-radius: 5px;
-            background-color: #FF4500;
-            /* Orange-red */
-            color: #fff;
-            font-size: 1rem;
+            background: #2196F3;
+            color: #FFFFFF;
+            font-size: 16px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: 10px;
         }
 
-        .compose-form button:hover {
-            background-color: #FF6347;
-            /* Lighter shade of orange-red on hover */
+        .compose-form button[type="submit"]:hover {
+            background: #1E88E5;
         }
 
-        .delete-buttons {
+        .about-container {
+            padding: 20px;
+        }
+
+        .about-text {
+            margin-bottom: 20px;
+        }
+
+        .website-details {
+            background: rgba(19, 128, 128, 0.6);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+            border-radius: 8px;
+            padding: 20px;
+            color: #FFFFFF;
+            margin-top: 20px;
+        }
+
+        .website-details h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .website-details p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Additional styles for home.ejs */
+        body {
+            background: linear-gradient(135deg, #4CAF50, #2196F3);
+            color: #FFFFFF;
+            font-size: 16px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .note-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .note {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .note-header {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
-        .delete-buttons button {
-            padding: 0.75rem;
-            margin: 0 10px;
+        .note-header h2 {
+            font-size: 24px;
+            margin: 0;
+            color: #FFFFFF;
+        }
+
+        .note-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .edit-link,
+        .delete-link {
+            color: #FFFFFF;
+            text-decoration: none;
+            margin-right: 10px;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .edit-link:hover,
+        .delete-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .divider {
+            color: #FFFFFF;
+            margin: 0 5px;
+        }
+
+        .empty {
+            color: #FFFFFF;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .compose-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: #FFFFFF;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #FFFFFF;
+            border-radius: 4px;
+            outline: none;
+            transition: border-color 0.3s, background-color 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .input-field:focus {
+            border-color: #4CAF50;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .button {
+            background: #2196F3;
+            color: #FFFFFF;
             border: none;
-            border-radius: 5px;
-            background-color: #FF4500; /* Orange-red */
-            color: #fff;
-            font-size: 1rem;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background 0.3s, transform 0.3s;
         }
 
-        .delete-buttons button:hover {
-            background-color: #FF6347; /* Lighter shade of orange-red on hover */
+        .button:hover {
+            background: #1E88E5;
         }
-        @media screen and (max-width: 768px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .navbar ul {
-        margin-top: 10px;
-        padding: 0;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    .navbar li {
-        margin: 10px 0;
-    }
-
-    .menu-icon {
-        display: block;
-        font-size: 2rem;
-        cursor: pointer;
-        order: 1;
-        margin-right: 15px;
-    }
-
-    .navbar input[type="checkbox"] {
-        display: none;
-    }
-
-    .navbar input[type="checkbox"]:checked ~ ul {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #000;
-        padding: 10px 0;
-        z-index: 999;
-    }
-
-    .navbar input[type="checkbox"]:checked ~ ul li {
-        margin: 5px 0;
-    }
-}
-
-/* Additional styles for other sections (adjust as needed) */
     </style>
 </head>
 
 <body>
-    <header>
-        <div class="navbar">
-            <h1 class="lll">Alfaaz-e-bayaan</h1>
-            <ul>
-                <li><a href="/home">home</a></li>
-                <li><a href="/compose">Compose</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/signup">Signup</a></li>
-            </ul>
-        </div>
-    </header>
+    <main>
+        <nav class="top">
+            <div class="title">Notes</div>
+            <div class="topNav">
+                <ul>
+                    <li><a href="/home">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/compose">Compose</a></li>
+                    <li><a href="/signup">Create Account</a></li>
+                </ul>
+            </div>
+        </nav>
+
