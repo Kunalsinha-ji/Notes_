@@ -24,7 +24,7 @@
                         <div class="note-header">
                             <h2><%= note.title %></h2>
                             <div class="note-actions">
-                                <a href="/edit/<%= note.title %>" class="edit-link">Edit</a>
+                                <a href="/edit/<%= note.title %>/<%= note.contents %>" class="edit-link">Edit</a>
                                 <span class="divider">|</span>
                                 <a href="/delete/<%= note.title %>" class="delete-link">Delete</a>
                             </div>
