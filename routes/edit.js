@@ -5,9 +5,9 @@ const Title = require("../globalVariables/title");
 const Email = require("../globalVariables/Email");
 const noteModel = require("../Models/noteModel");
 
-router.get("/:title", async (req, res) => {
+router.get("/:title/:contents", async (req, res) => {
     Title.setTitle(req.params.title);
-    res.render("edit");
+    res.render("edit",{con : req.params.contents});
 });
 
 router.post("/", async (req, res) => {
