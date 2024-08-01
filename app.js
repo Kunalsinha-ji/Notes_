@@ -57,7 +57,7 @@ app.post("/", async (req, res) => {
                 Email.setEmail(mail);
                 res.redirect('/home');
             } else {
-                res.redirect('/');
+                res.redirect('/?message=Invalid%20Credentials%20!!');
             }
         }
     } catch (error) {
