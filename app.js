@@ -50,19 +50,19 @@ app.post("/", async (req, res) => {
     try {
         const user = await userModel.findOne({ email: mail });
         if (!user) {
-            res.redirect('/?message=No%20user%20found');
+            return res.redirect('/?message=No%20user%20found');
         } else {
             const match = await bcrypt.compare(password, user.password);
             if (match) {
                 Email.setEmail(mail);
                 res.redirect('/home');
             } else {
-                res.redirect('/?message=Invalid%20Credentials%20!!');
+                return res.redirect('/?message=Invalid%20Credentials%20!!');
             }
         }
     } catch (error) {
         console.error('Database query error:', error);
-        res.status(500).send('Internal Server Error');
+        return res.status(500).send('Internal Server Error');
     }
 });
 
