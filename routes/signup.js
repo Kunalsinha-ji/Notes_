@@ -19,10 +19,15 @@ router.post("/", async (req, res) => {
     }
 
     try {
+        // const existingUser = await userModel.findOne({ email: email });
+        
+        // if (existingUser) {
+        //     return res.status(400).send("User already signed up");
+        // }
         const existingUser = await userModel.findOne({ email: email });
         
         if (existingUser) {
-            return res.status(400).send("User already signed up");
+            res.redirect("/?message=User%20already%20signed%20up%20!!");
         }
         
         const hashedPassword = await bcrypt.hash(password, saltRounds);
