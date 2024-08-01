@@ -19,15 +19,10 @@ router.post("/", async (req, res) => {
     }
 
     try {
-        // const existingUser = await userModel.findOne({ email: email });
-        
-        // if (existingUser) {
-        //     return res.status(400).send("User already signed up");
-        // }
         const existingUser = await userModel.findOne({ email: email });
         
         if (existingUser) {
-            res.redirect("/?message=User%20already%20signed%20up%20!!");
+            return res.redirect("/?message=User%20already%20signed%20up%20!!");
         }
         
         const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -43,10 +38,10 @@ router.post("/", async (req, res) => {
         
         Email.setEmail(email);
         
-        res.redirect("/home");
+        return res.redirect("/home");
     } catch (error) {
         console.error('Database query error:', error);
-        res.status(500).send('Internal Server Error');
+        return res.status(500).send('Internal Server Error');
     }
 });
 
